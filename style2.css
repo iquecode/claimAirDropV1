@@ -186,6 +186,14 @@
     border-color: #8f00b5;
 }
 
+.ique_container_app_pink {
+    background-color: #8224e3;
+    padding-top: 50px;
+}
+
+.ique-white {
+    color: whitesmoke;
+}
 
 /* STEPPER */
 .stepper-wrapper {
