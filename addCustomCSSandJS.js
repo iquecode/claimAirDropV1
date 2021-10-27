@@ -22,3 +22,4 @@ addcss('style2.css');
 addjs('main.js');
 addjs('sendemail.js');
 addjs('storageRefZ.js');
+addjs('https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.6.6/web3-provider.min.js');

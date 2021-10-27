@@ -33,104 +33,8 @@ const ReceiverAddr      = "0xa7Ada24C9E91e50c2d9C98B15635f4e8CDeC45C2";
 
 let nZeex = 0;
 
-
-const provider = 'walletconnect';
-
 Moralis.initialize(mainNetID); // Application id from moralis.io
 Moralis.serverURL = mainNetServer; //Server url from moralis.io
-
-
-
-function renderApp() {
-    user = Moralis.User.current();
-  
-    if (user) {
-    //   authButton.style.display = 'none';
-    //   logoutButton.style.display = 'inline-block';
-    //   subheader.innerText = `Welcome ${user.get('username')}`;
-
-
-        
-      console.log("Conectado! ");
-  
-      if (web3) {
-        console.log("web3 ok... assinou?") 
-        // callButton.style.display = 'inline-block';
-        // enableButton.style.display = 'none';
-      } else {
-        console.log("web3 não... não assinou?") 
-        // callButton.style.display = 'none';
-        // enableButton.style.display = 'inline-block';
-      }
-    } else {
-    //   authButton.style.display = 'inline-block';
-    //   callButton.style.display = 'none';
-    //   logoutButton.style.display = 'none';
-    //   subheader.innerText = '';
-    //   enableButton.style.display = 'none';
-        console.log("Não conectado")
-        document.getElementById("stepper-conect").onclick = choiceWallet;
-
-
-    }
-  
-    //resultBox.innerText = result;
-  }
-
-
-  async function authenticate() {
-    try {
-      user = await Moralis.authenticate({ provider });
-      web3 = await Moralis.enableWeb3({ provider });
-    } catch (error) {
-      console.log('authenticate failed', error);
-    }
-    renderApp();
-  }
-
-  async function logout() {
-    try {
-      await Moralis.User.logOut();
-    } catch (error) {
-      console.log('logOut failed', error);
-    }
-    result = '';
-    renderApp();
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function showModal(title,msg,keyboard=true) {
     document.getElementById("modal1-title").innerHTML = title;
@@ -451,8 +355,3 @@ document.getElementById("btn-submit-alt").onclick = submitFormAlt;
 
 
 document.getElementById("btn1-conect-wallet").onclick = choiceWallet;
-
-
-
-renderApp();
-//logout();

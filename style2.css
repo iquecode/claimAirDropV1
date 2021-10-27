@@ -278,4 +278,20 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    border-radius: 10px;
+    border: solid 1px #78909C;
+    padding: 7px;
+    cursor: pointer;
 } 
+
+#connect-metamask {
+    margin-bottom: 10px;
+}
+
+#connect-metamask:hover, #conect-wallet-conect:hover {
+    border: solid 2px #2aa9b8;
+}
+
+#stepper-conect {
+    cursor: pointer;
+}
