@@ -295,3 +295,11 @@
 #stepper-conect {
     cursor: pointer;
 }
+
+.ique-show-flex {
+    display: flex;
+}
+
+.ique-hide {
+    display: none !important;
+}
