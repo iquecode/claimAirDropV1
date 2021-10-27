@@ -25,15 +25,15 @@
 
 		<div class="stepper-wrapper">
 			<div class="stepper-item active">
-				<div class="step-counter"></div>
+				<div class="step-counter">1</div>
 				<div class="step-name">Conect Wallet</div>
 			</div>
 			<div class="stepper-item">
-				<div class="step-counter"></div>
+				<div class="step-counter">2</div>
 				<div class="step-name">Claim AirDrop</div>
 			</div>
 			<div class="stepper-item">
-				<div class="step-counter"></div>
+				<div class="step-counter">3</div>
 				<div class="step-name">Buy ZEEX - Big Discount</div>
 			</div>
 		</div>
@@ -62,7 +62,7 @@
 						<p class="card-text">Click here to connect your wallet</p>
 					</div>
 					<div class="card-footer">
-						<span class="btn btn-light">Connect wallet</span>
+						<span id="btn1-conect-wallet" class="btn btn-light">Connect wallet</span>
 					</div>
 				</div>
 				<!-- <div class="card border-0">
@@ -304,6 +304,36 @@
 			<div class="spinner-border"></div>
 		</div>
 	</div>
+
+
+	<!-- new modals  -->
+	<div class="modal" id="modal-choice-wallet" role="dialog" tabindex="-1">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Connect wallet</h5>
+					<button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div id="connect-metamask">
+						<div>MetaMask</div>
+						<div><img src="./metamask.svg" width="25px" alt=""></div>
+					</div>
+					<div id="conect-wallet-conect">
+						<div>Wallet Conect</div>
+						<div><img src="./walletconnect.svg" width="25" alt=""></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

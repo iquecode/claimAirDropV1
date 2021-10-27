@@ -327,6 +327,31 @@ function isNumber(str) {
 
 //console.log(getRefZ());
 
+
+
+
+
+
+
+// NEW VERSION
+
+
+
+function showCustomModal(id) {
+        $(id).modal();
+}
+
+function choiceWallet() {
+    console.log("OLÁ... CHOICE WALLET");
+    showCustomModal('#modal-choice-wallet');
+}
+
+
+
 document.getElementById("btn-buyZeex").onclick = submitBuyZeex;
 document.getElementById("link-alternative").onclick = showModalAlternative;
 document.getElementById("btn-submit-alt").onclick = submitFormAlt;
+
+
+
+document.getElementById("btn1-conect-wallet").onclick = choiceWallet;

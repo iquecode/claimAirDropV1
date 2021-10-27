@@ -273,3 +273,9 @@
   .stepper-item:last-child::after {
     content: none;
   }
+
+#connect-metamask, #conect-wallet-conect {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+} 
