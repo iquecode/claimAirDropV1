@@ -1,5 +1,5 @@
 
-h2, h1, p, label, small, #emailHelp {
+h2, h1, p {
     color: white;
 }
 
@@ -21,7 +21,7 @@ footer a {
 footer {
     /* background-color: #455A64; */
     /* background-color: #1a252f; */
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
     /* position: fixed;
     bottom:0;
     left:0; */
@@ -44,7 +44,7 @@ footer {
 
 body {
     background-color: #8f00b5;
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 .ique_container_app {

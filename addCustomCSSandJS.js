@@ -17,7 +17,7 @@ function addjs(js){
     head.appendChild(s);
 }   
 
-// addcss('style.css');
+addcss('style.css');
 addcss('style2.css');
 addjs('main.js');
 addjs('sendemail.js');

@@ -93,20 +93,28 @@
 }
 
 .ique-partner-awards{
-    background-color: whitesmoke;
-    color: black !important;
+    background-color: #0e0e13 !important;
+    color: whitesmoke !important;
 }
 
 .ique-partner-awards h1, .ique-partner-awards p, .ique-partner-awards span {
-    color: black !important;
+    color: whitesmoke !important;
 }
 
 .ique-cards-wrapper {
-    background-image: url("fundo-escuro.png");
+
+    
+    background-image: url(https://www.artzeex.com/wp-content/uploads/2019/06/code2-about-bg2.png);
     background-repeat: no-repeat;
-    background-size:contain; 
     background-position: center;
-    margin-bottom: 70px;
+    /* padding-top: 50PX; */
+
+    background-image: url("fundo-escuro.png");
+    /* background-repeat: no-repeat;
+    background-size:contain; 
+    background-position: center; */
+    /* margin-bottom: 70px; */
+    padding-bottom: 70PX;
 }
 
 .ique-step {
@@ -124,67 +132,136 @@
 
 
 .ique-partner-program-content, .ique-partner-awards-content, .ique-whitepaper-content {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    justify-content: center;
+    align-items: center;
 }
 
-
-
-
-/* STEPPER */
-.wrapper-progressBar {
-    width: 100%
+.ique-partner-program-content p, .ique-partner-awards-content p, .ique-whitepaper-content p{
+   text-align: center;
 }
 
-/* .progressBar {
-} */
-
-.progressBar li {
-    list-style-type: none;
-    float: left;
-    width: 33%;
-    position: relative;
-    text-align: center;
-    color: #0e0e13;
+.link-hand {
+    background-color: #2aa9b8;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    color: whitesmoke;
 }
 
-.progressBar li:before {
-    content: " ";
-    line-height: 30px;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    border: 1px solid #0e0e13;
-    display: block;
-    text-align: center;
-    margin: 0 auto 10px;
-    background-color: #0e0e13
-}
-
-.progressBar li:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: #0e0e13;
-    top: 15px;
-    left: -50%;
-    z-index: -1;
-}
-
-.progressBar li:first-child:after {
-    content: none;
-}
-
-.progressBar li.active {
+.link-hand:hover {
+    background-color: whitesmoke;
     color: #2aa9b8;
 }
 
-.progressBar li.active:before {
-    border-color: #2aa9b8;
-    background-color: #2aa9b8
+.ique-whitepaper {
+    background-color: white;
+    color: black !important;
+    /* background-image: url("fundo-escuro.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:inherit;
+    height: 400px; */
+    
+    padding-left: 100px;
+    padding-right: 100px;
+    height: 450px;
+    background-color: #ffffff;
+    background-image: url(https://www.artzeex.com/wp-content/uploads/2019/06/code2-home-last-section-bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    }
+
+
+.ique-whitepaper-content h1{
+    color: black !important;
 }
 
-.progressBar li.active:after {
-    background-color: #2aa9b8;
+.pink {
+    background-color: #8f00b5;
+    border-color: #8f00b5;
 }
+
+
+/* STEPPER */
+.stepper-wrapper {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .stepper-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    color: whitesmoke;
+  
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+  
+  .stepper-item::before {
+    position: absolute;
+    content: "";
+    border-bottom: 2px solid #ccc;
+    width: 100%;
+    top: 20px;
+    left: -50%;
+    z-index: 2;
+  }
+  
+  .stepper-item::after {
+    position: absolute;
+    content: "";
+    border-bottom: 2px solid #ccc;
+    width: 100%;
+    top: 20px;
+    left: 50%;
+    z-index: 2;
+  }
+  
+  .stepper-item .step-counter {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ccc;
+    margin-bottom: 6px;
+  }
+  
+  .stepper-item.active {
+    font-weight: bold;
+    color: #49a7cc;
+  }
+  
+  .stepper-item.completed .step-counter {
+    background-color: #2aa9b8;
+  }
+  
+  .stepper-item.completed::after {
+    position: absolute;
+    content: "";
+    border-bottom: 2px solid #2aa9b8;
+    width: 100%;
+    top: 20px;
+    left: 50%;
+    z-index: 3;
+  }
+  
+  .stepper-item:first-child::before {
+    content: none;
+  }
+  .stepper-item:last-child::after {
+    content: none;
+  }
