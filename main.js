@@ -20,7 +20,6 @@ const tokenDecimals = 18;
 const priceZEEXajustBNB = 0.33 * 1.03;
 const URL_BNBUSDT = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
 
-
 const smartContractABI  = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"wallet","type":"address"},{"indexed":false,"internalType":"uint256","name":"amout","type":"uint256"},{"indexed":false,"internalType":"address","name":"partnerAddr","type":"address"},{"indexed":false,"internalType":"uint256","name":"amountPartner","type":"uint256"}],"name":"ClaimAirDropEvent","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"id","type":"uint256"},{"components":[{"internalType":"address","name":"wallet","type":"address"},{"internalType":"uint8","name":"rebate","type":"uint8"},{"internalType":"uint8","name":"rebateBuyer","type":"uint8"},{"internalType":"uint8","name":"rebateAnoter","type":"uint8"},{"internalType":"uint8","name":"rebateAirDrop","type":"uint8"},{"internalType":"bool","name":"customRebate","type":"bool"}],"indexed":false,"internalType":"struct SaleAirDrop.Partner","name":"partner","type":"tuple"}],"name":"NewPartnerEvent","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"wallet","type":"address"},{"components":[{"internalType":"address","name":"buyer","type":"address"},{"internalType":"uint256","name":"amoutZeex","type":"uint256"},{"internalType":"uint8","name":"anoterToken","type":"uint8"},{"internalType":"uint256","name":"amountAnoter","type":"uint256"},{"internalType":"uint256","name":"idPartner","type":"uint256"},{"internalType":"address","name":"walletPartner","type":"address"},{"internalType":"uint256","name":"rebatePartner","type":"uint256"},{"internalType":"uint256","name":"rebateBuyer","type":"uint256"},{"internalType":"uint256","name":"rebateAnoter","type":"uint256"}],"indexed":false,"internalType":"struct SaleAirDrop.Sale","name":"sale","type":"tuple"}],"name":"SaleEvent","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"id","type":"uint256"},{"components":[{"internalType":"address","name":"wallet","type":"address"},{"internalType":"uint8","name":"rebate","type":"uint8"},{"internalType":"uint8","name":"rebateBuyer","type":"uint8"},{"internalType":"uint8","name":"rebateAnoter","type":"uint8"},{"internalType":"uint8","name":"rebateAirDrop","type":"uint8"},{"internalType":"bool","name":"customRebate","type":"bool"}],"indexed":false,"internalType":"struct SaleAirDrop.Partner","name":"partner","type":"tuple"}],"name":"UpdatePartnerEvent","type":"event"},{"inputs":[{"internalType":"uint256","name":"idRebate","type":"uint256"},{"internalType":"uint256","name":"nZeex","type":"uint256"}],"name":"buyWithBNB","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"id","type":"uint256"}],"name":"claimAirDrop","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"string","name":"confirmation","type":"string"}],"name":"destruct","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getAirDropLimit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getAirDropON","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getAirDropUsed","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getAmountZEEXEachAirDrop","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getFeeAirDrop","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getLatestPriceBNBAdjust","outputs":[{"internalType":"int256","name":"","type":"int256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getLatestRoundBNB","outputs":[{"components":[{"internalType":"uint80","name":"roundID","type":"uint80"},{"internalType":"int256","name":"price","type":"int256"},{"internalType":"uint256","name":"startedAt","type":"uint256"},{"internalType":"uint256","name":"timeStamp","type":"uint256"},{"internalType":"uint80","name":"answeredInRound","type":"uint80"}],"internalType":"struct SaleAirDrop.RoundDataBNB","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getParamsPrice","outputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"int256","name":"","type":"int256"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"id","type":"uint256"}],"name":"getPartner","outputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint8","name":"","type":"uint8"},{"internalType":"uint8","name":"","type":"uint8"},{"internalType":"uint8","name":"","type":"uint8"},{"internalType":"uint8","name":"","type":"uint8"},{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"wallet","type":"address"}],"name":"getPartnerWithWallet","outputs":[{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"uint8","name":"","type":"uint8"},{"internalType":"uint8","name":"","type":"uint8"},{"internalType":"uint8","name":"","type":"uint8"},{"internalType":"uint8","name":"","type":"uint8"},{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"id","type":"uint256"}],"name":"getRebateAirDropPartner","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getRebateON","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getStandartRebate","outputs":[{"internalType":"uint8","name":"","type":"uint8"},{"internalType":"uint8","name":"","type":"uint8"},{"internalType":"uint8","name":"","type":"uint8"},{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTolerancePercent","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"wallet","type":"address"},{"internalType":"uint8","name":"rebate","type":"uint8"},{"internalType":"uint8","name":"rebateBuyer","type":"uint8"},{"internalType":"uint8","name":"rebateUSDTorBNB","type":"uint8"},{"internalType":"uint8","name":"rebateAirDrop","type":"uint8"},{"internalType":"bool","name":"customRebate","type":"bool"}],"name":"newPartner","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"priceFeedAddr","type":"address"},{"internalType":"address","name":"ZEEXAddr","type":"address"},{"internalType":"address","name":"USDTAddr","type":"address"}],"name":"reSetParamsConstructor","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"limit","type":"uint256"}],"name":"setAirDropLimit","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bool","name":"on","type":"bool"}],"name":"setAirDropON","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"setAmountZEEXEachAirDrop","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amountBNB","type":"uint256"}],"name":"setFeeAirDrop","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"minimal","type":"uint256"}],"name":"setMinimalBNBAmount","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"minimal","type":"uint256"}],"name":"setMinimalUSDTAmount","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"ownerZEEX","type":"address"}],"name":"setOwnerZEEX","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"int256","name":"percent","type":"int256"}],"name":"setPercentPriceBNB","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bool","name":"rebateON","type":"bool"}],"name":"setRebateON","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint8","name":"rebateZEEX","type":"uint8"},{"internalType":"uint8","name":"rebateBuyerZEEX","type":"uint8"},{"internalType":"uint8","name":"rebateUSDTorBNB","type":"uint8"},{"internalType":"uint8","name":"rebateAirDrop","type":"uint8"}],"name":"setStandartRebate","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint8","name":"percent","type":"uint8"}],"name":"setTolerancePercent","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"valueZEEX","type":"uint256"}],"name":"setValueZEEX","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"signPartner","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amountUSDT","type":"uint256"},{"internalType":"uint256",
 "name":"idRebate","type":"uint256"}],"name":"swap","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],
 "stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"id","type":"uint256"},{"internalType":"uint8","name":"rebate","type":"uint8"},{"internalType":"uint8","name":"rebateBuyer",
@@ -34,8 +33,6 @@ const ReceiverAddr      = "0xa7Ada24C9E91e50c2d9C98B15635f4e8CDeC45C2";
 let nZeex = 0;
 let user;
 
-
-
 const provider = 'walletconnect';
 const chainId = 56;
 
@@ -44,11 +41,8 @@ let alreadyGetAirDrop  = false;
 Moralis.initialize(mainNetID); // Application id from moralis.io
 Moralis.serverURL = mainNetServer; //Server url from moralis.io
 
-//traduções
 const label_ConectWallet = "Conect Wallet";
 const label_Conected     = "Conected";
-
-
 
 function doStep(n) {
     $('#stepper-conect').removeClass('active');
@@ -76,12 +70,9 @@ function doStep(n) {
         $('#stepper-airdrop').addClass('completed');
         $('#stepper-buy').addClass('active');
     }
-
 }
 
-
 function updateRenderPartner(cod, addr) {
-
     if(cod > 0) {
         $('#partner-sign').removeClass('ique-show-flex'); 
         $('#partner-sign').addClass('ique-hide'); 
@@ -104,96 +95,49 @@ function updateRenderPartner(cod, addr) {
         const a = document.querySelector("#link-hand");
         a.href = "#partner-sign";
     }
-
-   
 }
 
 
 function renderApp() {
-   
     user = Moralis.User.current();
-  
     if (user) {
-    //   authButton.style.display = 'none';
-    //   logoutButton.style.display = 'inline-block';
-    //   subheader.innerText = `Welcome ${user.get('username')}`;
+        // console.log(user.attributes.ethAddress);
+        alreadyGetAirDrop = user.get('airdropv1');
+        const codPartner = user.get("cod_partner_v1");
 
-
-    console.log(user.attributes.ethAddress);
-    alreadyGetAirDrop = user.get('airdropv1');
-
-    const codPartner = user.get("cod_partner_v1");
-
-
-
-    // if (codPartner > 0) {
         updateRenderPartner(codPartner, user.attributes.ethAddress);
-    // }
-                
-
-    //   user.set("name",name);
-    //   user.setEmail(email);
-    //   user.save();
+      
+        document.getElementById("btn-buyZeex").innerHTML = "Buy ZEEX";
+        document.getElementById("btn-buyZeex").onclick = submitBuyZeex;
+        document.getElementById("btn-get-partner-link").innerHTML = "Get partner Link";
+        document.getElementById("btn-get-partner-link").onclick = getPartnerLink;
+        document.getElementById("stepper-conect").onclick = logout;
+        document.getElementById("step1-name").innerHTML = label_Conected;
         
-      console.log("Conectado! ");
-
-      
-
-      document.getElementById("btn-buyZeex").innerHTML = "Buy ZEEX";
-      document.getElementById("btn-buyZeex").onclick = submitBuyZeex;
-
-      document.getElementById("btn-get-partner-link").innerHTML = "Get partner Link";
-      document.getElementById("btn-get-partner-link").onclick = getPartnerLink;
-      
-
-      document.getElementById("stepper-conect").onclick = logout;
-      document.getElementById("step1-name").innerHTML = label_Conected;
-      
-      
-      if (alreadyGetAirDrop) {
-        doStep(3);
-      } 
-      else {
-        doStep(2);
-      }
-        
-      if (web3) {
-        console.log("web3 ok... assinou?") 
-        // callButton.style.display = 'inline-block';
-        // enableButton.style.display = 'none';
-      } else {
-        console.log("web3 não... não assinou?") 
-        // callButton.style.display = 'none';
-        // enableButton.style.display = 'inline-block';
-      }
+        if (alreadyGetAirDrop) {
+            doStep(3);
+        } 
+        else {
+            doStep(2);
+        }
+            
+        // if (web3) {
+        // } else {    
+        // }
     } else {
-         updateRenderPartner(0, 0);
-    //   authButton.style.display = 'inline-block';
-    //   callButton.style.display = 'none';
-    //   logoutButton.style.display = 'none';
-    //   subheader.innerText = '';
-    //   enableButton.style.display = 'none';
-        console.log("Não conectado");
-
+        updateRenderPartner(0, 0);
         document.getElementById("btn-buyZeex").innerHTML = "Conect Wallet";
         document.getElementById("btn-buyZeex").onclick = choiceWallet;
-
         document.getElementById("btn-get-partner-link").innerHTML = "Conect Wallet";
         document.getElementById("btn-get-partner-link").onclick = choiceWallet;
-
-        
         doStep(1);
-
-
         document.getElementById("stepper-conect").onclick = choiceWallet;
         document.getElementById("step1-name").innerHTML = label_ConectWallet;
     }
-  
-    //resultBox.innerText = result;
   }
 
 
-  async function authenticateWC() {
+async function authenticateWC() {
     $('#modal-choice-wallet').modal('hide');
     $("#modal2").modal({backdrop: 'static', keyboard: false});
     try {
@@ -203,23 +147,17 @@ function renderApp() {
       console.log('authenticate failed', error);
     }
     if (user) {
-        console.log("USER");
+        //console.log("USER");
         $("#modal2").modal('hide');
         localStorage.setItem("providerZ", "wv");
     }
     if (web3) {
-        console.log("WEB3");
+        //console.log("WEB3");
     }
-
-   
     renderApp();
-    
-   
   }
 
-
-  async function authenticateMM() {
-    //$('#modal-choice-wallet').modal('hide');
+async function authenticateMM() {
     hideAllModals();
     $("#modal2").modal({backdrop: 'static', keyboard: false});
     try {
@@ -234,24 +172,14 @@ function renderApp() {
         console.log("USER");
         //$("#modal2").modal('hide');
         localStorage.setItem("providerZ", "mm");
-
     }
     if (web3) {
         console.log("WEB3");
-       
     }
-    
-
     renderApp();
-    
-    
-    
   }
 
-
-
-
-  async function logout() {
+async function logout() {
     try {
       await Moralis.User.logOut();
     } catch (error) {
@@ -260,13 +188,12 @@ function renderApp() {
     localStorage.setItem("providerZ", "");
     result = '';
     renderApp();
-  }
+}
 
 
 async function claimAirDrop() {
     $("#modal2").modal({backdrop: 'static', keyboard: false});
     user = Moralis.User.current();
-
     const claim = {  
         contractAddress: smartContractAddr,  
         functionName: "claimAirDrop",  
@@ -276,44 +203,30 @@ async function claimAirDrop() {
             id: getRefZ()
         },
     };
-
     if(user) {
-        //Moralis.enableWeb3() ;
-        console.log(user.attributes.ethAddress);
-        console.log("CLAIM AIR DROP");
-
         let claimOk = false;
         try {
                 const providerZ = localStorage.getItem("providerZ");
                 console.log(providerZ);
-
                 if (providerZ == 'wc') {
                     web3 = await Moralis.enableWeb3({provider, chainId}); //wallet conect
                 }
                 else {
                     web3 = await Moralis.enableWeb3(); // metamask
                 }
-                
                 if(web3) {
                     claimOk = await Moralis.executeFunction(claim);
-                    //console.log('EXECUTAR FUNÇÃO CLAIM AIRDROP');
                 }
         } catch (error) {
             $("#modal2").modal('hide');
             showModal("Error", "error: " + error.code + ". " + error.message)
             logout();
         }
-        
         if (claimOk) {
             $("#modal2").modal('hide');
             clearForm();
-            // sendEmail(email, name, `${amountUSDT}`);
-
             user.set("airdropv1", true);
             user.save();
-            // user.setEmail(email);
-            
-
             showModal("Success", "Congratulations, your transaction was successful. If you have any questions, please contact contact@artzeex.com." );
             renderApp();
         }
@@ -322,7 +235,6 @@ async function claimAirDrop() {
             showModal("Error", "Unexpected error. Reconnect your wallet and try again." )
             logout();
         }
-
     }
     else {
         $("#modal2").modal('hide');
@@ -330,7 +242,6 @@ async function claimAirDrop() {
         choiceWallet();
     }
 }
-
 
 function showModal(title,msg,keyboard=true) {
     document.getElementById("modal1-title").innerHTML = title;
@@ -349,7 +260,6 @@ function showModalMM(title,msg) {
 }
 
 function showModalAlternative() {
-    //console.log("modal alternative");
     $("#modalAlternative").modal();
 }
 
@@ -359,218 +269,27 @@ function clearForm() {
     document.getElementById('InputUSDT').value='';
     document.getElementById('InputBNB').value='';
     hideAllModals();
-    // $("#modal1").modal('hide');
-    // $("#modal2").modal('hide');
-    // $("#modal3").modal('hide');
 }
 
 async function sendEmail(email, name, usdt) {
     const params = { email: email, name: name, usdt: usdt};
     await Moralis.Cloud.run("sendPrivateSaleEmail", (InputEmail, params));
-    //console.log("send email");
 }
 
 async function sendForm(email, name, txn, address, to="iquecode@gmail.com") {
     const params = { email: email, name: name, txn: txn, address: address, to: to};
     await Moralis.Cloud.run("sendForm", (InputEmail, params));
-    //console.log("send email");
 }
 
-async function OLDbuyZeex(amountUSDT, BNB=false, AmountZ = 0) {
-    $("#modal3").modal({backdrop: 'static', keyboard: false});
-    let user = Moralis.User.current();
-        
-    try {
-       user = await Moralis.authenticate();
-    } catch (error) {
-        $("#modal3").modal('hide');
-        showModal("Error", "error: " + error.code + ". " + error.message)
-    }       
-    
-    
-    $("#modal3").modal('hide');
-    $("#modal_meta_mask").modal('hide');
-    if (user) {
-
-        $("#modal2").modal({backdrop: 'static', keyboard: false});
-
-        //console.log(user);
-        const name  = document.getElementById("InputName").value;
-        const email = document.getElementById("InputEmail").value;
-        user.set("name",name);
-        user.setEmail(email);
-        user.save();
-
-        if(!BNB) {
-            //const amountUSDTdecimals = amountUSDT + '000000000000000000'; //18 casas decimais
-            const amountUSDTdecimals = (amountUSDT * 1000000000000).toFixed(0) + '000000';
-            //console.log("amount USDT: " + amountUSDTdecimals);
-            const approveExpense = {  
-                contractAddress: USDTaddr,  
-                functionName: "approve",  
-                abi: USDT_ABI,  
-                params: {    
-                    spender: smartContractAddr, amount: amountUSDTdecimals
-                },
-            };
-            const doSwap = {  
-                contractAddress: smartContractAddr,  
-                functionName: "swap",  
-                abi: smartContractABI,  
-                params: {    
-                    amountUSDT: amountUSDTdecimals,
-                    idRebate: getRefZ()
-                },
-            };
-
-            let approve = false;
-            let swap = false;
-            try {
-                approve = await Moralis.executeFunction(approveExpense);
-                if (approve) {
-                    swap = await Moralis.executeFunction(doSwap);
-                }
-            } catch (error) {
-                $("#modal2").modal('hide');
-                showModal("Error", "error: " + error.code + ". " + error.message)
-            }
-            
-            if (swap) {
-                $("#modal2").modal('hide');
-                clearForm();
-                sendEmail(email, name, `${amountUSDT}`);
-                showModal("Success", "Congratulations, your transaction was successful. If you have any questions, please contact contact@artzeex.com." );
-            }
-            return true;
-        }
-
-        const amountBNB = amountUSDT; 
-        
-        const buyWithBNB = {  
-            contractAddress: smartContractAddr,  
-            functionName: "buyWithBNB",  
-            abi: smartContractABI,  
-            msgValue: amountBNB,
-            params: {    
-                idRebate: getRefZ(),
-                nZeex: AmountZ
-            },
-        };
-
-        let buy = false;
-        try {
-                buy = await Moralis.executeFunction(buyWithBNB);
-        } catch (error) {
-            $("#modal2").modal('hide');
-            showModal("Error", "error: " + error.code + ". " + error.message)
-        }
-        
-        if (buy) {
-            $("#modal2").modal('hide');
-            clearForm();
-            sendEmail(email, name, `${amountUSDT}`);
-            showModal("Success", "Congratulations, your transaction was successful. If you have any questions, please contact contact@artzeex.com." );
-        }
-        
-    }
- }
-
-function OLDsubmitBuyZeex() {
-
-    const opt = document.getElementById("seletc-USDTorBNB").value;
-    let amountZeex;
-
-    if (opt == 1) {   //USDT
-
-        //const amountUSDT = parseInt(document.getElementById("InputUSDT").value);
-        const amountUSDT = document.getElementById("InputUSDT").value;
-        let error = "";
-        let ok = true;
-        if (isNumber(amountUSDT) == false) {
-            error = "Invalid format.";
-            ok = false;
-        }
-        if ( amountUSDT < 1 ) {
-            error = "Minimum investment of USDT 30 in pre sale.";
-            ok = false;
-        }
-        if ( ok ) {
-            amountZeex = (amountUSDT / 0.33).toFixed(6);
-            let msginfo = "Three confirmations will be requested in Meta Mask: 1st for connection, 2nd to approve swap contract, 3rd swap execution USDT ";
-            msginfo += amountUSDT + " for ZEEX " + amountZeex;
-            showModalMM('Secure swap brokered by public smart contract', msginfo);
-            buyZeex(amountUSDT);
-        }
-        else {
-            showModal("Error",error);
-        }
-
-    }
-    else {  //BNB
-
-        const amountBNB = document.getElementById("InputBNB").value;
-        let error = "";
-        let ok = true;
-        if (isNumber(amountBNB) == false) {
-            error = "Invalid format.";
-            ok = false;
-        }
-        if ( amountBNB < 0.0001 ) {
-            error = "Minimum investment of 0.1 BNB in pre sale.";
-            ok = false;
-        }
-        if ( ok ) {
-            _getBNBPrice();
-            let amount = (amountBNB * 1000000000000).toFixed(0) + '000000';
-            //console.log(`ok: ${amount}`)
-            let msginfo = "Three confirmations will be requested in Meta Mask: 1st for connection, 2nd to approve swap contract, 3rd swap execution USDT ";
-            msginfo += amountBNB + " for ZEEX " + (nZeex/1000000).toFixed(4);
-            showModalMM('Secure swap brokered by public smart contract', msginfo);
-            buyZeex(amount, true, nZeex);
-            // amountZeexBuy
-        }
-        else {
-            showModal("Error",error);
-        }
-    }
-
-}
-
-
-
-// aqui
 
 async function buyZeex(amountUSDT, BNB=false, AmountZ = 0) {
-   
-
-
     user = Moralis.User.current();
-
-        
-    //hideAllModals();
-
-    // $("#modal2").modal({backdrop: 'static', keyboard: false});
-    // $("#modal2").modal({backdrop: 'static', keyboard: false});
-    // $("#modal2").modal();
-    console.log("MODAL INICIO BUY ZEEX");
-
     $("#modal2").modal({backdrop: 'static', keyboard: false});
 
     if (user) {
-
-
-       
-
-        
-
-        // let msginfo = "secury swap execution USDT ";
-        // msginfo += amountUSDT + " for ZEEX " + (nZeex/0.33).toFixed(4);
-        // showModalMM('Secure swap brokered by public smart contract', msginfo);
-            
         try {
             const providerZ = localStorage.getItem("providerZ");
-            console.log(providerZ);
-
+            //console.log(providerZ);
             if (providerZ == 'wc') {
                 web3 = await Moralis.enableWeb3({provider, chainId}); //wallet conect
             }
@@ -584,17 +303,9 @@ async function buyZeex(amountUSDT, BNB=false, AmountZ = 0) {
                 user.set("name", username);
                 user.set("emailcontact", emailcontact);
                 user.save();
-                //claimOk = await Moralis.executeFunction(claim);
-                //console.log('EXECUTAR FUNÇÃO CLAIM AIRDROP');
+        
                 if(!BNB) {
-
-
-                   
-
-
-                    //const amountUSDTdecimals = amountUSDT + '000000000000000000'; //18 casas decimais
                     const amountUSDTdecimals = (amountUSDT * 1000000000000).toFixed(0) + '000000';
-                    //console.log("amount USDT: " + amountUSDTdecimals);
                     const approveExpense = {  
                         contractAddress: USDTaddr,  
                         functionName: "approve",  
@@ -627,22 +338,13 @@ async function buyZeex(amountUSDT, BNB=false, AmountZ = 0) {
                     
                     if (swap) {
                         hideAllModals();
-                        //$("#modal2").modal('hide');
                         clearForm();
-                        //sendEmail(email, name, `${amountUSDT}`);
                         showModal("Success", "Congratulations, your transaction was successful. If you have any questions, please contact contact@artzeex.com." );
                     }
                     return true;
                 }
 
-                //usdt
-
-
-                
-
-
-                const amountBNB = amountUSDT; 
-        
+                const amountBNB = amountUSDT; //represent bnb
                 const buyWithBNB = {  
                     contractAddress: smartContractAddr,  
                     functionName: "buyWithBNB",  
@@ -653,7 +355,6 @@ async function buyZeex(amountUSDT, BNB=false, AmountZ = 0) {
                         nZeex: AmountZ
                     },
                 };
-
                 let buy = false;
                 $("#modal2").modal({backdrop: 'static', keyboard: false});
                 try {
@@ -662,32 +363,20 @@ async function buyZeex(amountUSDT, BNB=false, AmountZ = 0) {
                     $("#modal2").modal('hide');
                     showModal("Error", "error: " + error.code + ". " + error.message)
                 }
-                
                 if (buy) {
                     $("#modal2").modal('hide');
                     clearForm();
                     //sendEmail(email, name, `${amountUSDT}`);
                     showModal("Success", "Congratulations, your transaction was successful. If you have any questions, please contact contact@artzeex.com." );
                 }
-
             }
         } catch (error) {
             $("#modal2").modal('hide');
             showModal("Error", "error: " + error.code + ". " + error.message)
             logout();
         }
-
-
-
-
-
     }
-
 }
-
-
-
-
 
 
 function submitBuyZeex() {
@@ -695,7 +384,6 @@ function submitBuyZeex() {
     const opt = document.getElementById("seletc-USDTorBNB").value;
     let amountZeex;
     if (opt == 1) {   //USDT
-        //const amountUSDT = parseInt(document.getElementById("InputUSDT").value);
         const amountUSDT = document.getElementById("InputUSDT").value;
         let error = "";
         let ok = true;
@@ -711,7 +399,6 @@ function submitBuyZeex() {
             amountZeex = (amountUSDT / 0.33).toFixed(6);
             let msginfo = "Three confirmations will be requested in Meta Mask: 1st for connection, 2nd to approve swap contract, 3rd swap execution USDT ";
             msginfo += amountUSDT + " for ZEEX " + amountZeex;
-            //showModalMM('Secure swap brokered by public smart contract', msginfo);
             if(user) {
                 buyZeex(amountUSDT);
             }
@@ -722,7 +409,6 @@ function submitBuyZeex() {
 
     }
     else {  //BNB
-
         const amountBNB = document.getElementById("InputBNB").value;
         let error = "";
         let ok = true;
@@ -735,29 +421,17 @@ function submitBuyZeex() {
             ok = false;
         }
         if ( ok ) {
-
             _getBNBPrice();
             let amount = (amountBNB * 1000000000000).toFixed(0) + '000000';
-            //console.log(`ok: ${amount}`)
-            //let msginfo = "Three confirmations will be requested in Meta Mask: 1st for connection, 2nd to approve swap contract, 3rd swap execution USDT ";
-            //msginfo += amountBNB + " for ZEEX " + (nZeex/1000000).toFixed(4);
             if(user) {
-                //showModalMM('Secure swap brokered by public smart contract', msginfo);
                 buyZeex(amount, true, nZeex);
-            // amountZeexBuy
             }
-            
         }
         else {
             showModal("Error",error);
         }
     }
-
-
 }
-
-
-
 
 
 function submitFormAlt() {
@@ -780,8 +454,6 @@ function submitFormAlt() {
 
 function updateBNB(price) {
     priceZEEXinBNB = (priceZEEXajustBNB / price);
-    //console.log("PirceZEEXinBNB: " + priceZEEXinBNB.toFixed(6));
-
     const inputBNB = document.querySelector('#InputBNB');
     const priceBNBhelp = document.getElementById("priceBNBHelp");
     priceBNBhelp.innerHTML = `Receive ${(inputBNB.value / priceZEEXinBNB).toFixed(4)} ZEEX! : ) | ref. current quote. - exact amount of ZEEX can be adjusted on confirmation.`;
@@ -826,25 +498,15 @@ inputBNB.addEventListener('input', function() {
     _getBNBPrice();
 });
 
-
 let selectUSDTorBNB = document.querySelector('#seletc-USDTorBNB');
 selectUSDTorBNB.addEventListener('input', function() {
      const priceBNBhelp = document.getElementById("priceBNBHelp");
-//   priceUSDThelp.innerHTML = `Receive ${(this.value / 0.33).toFixed(4)} ZEEX! : )`;
-//   if (this.value < 30) {
-//     priceUSDThelp.innerHTML = "1 ZEEX = 0.33 USDT | 1 USDT = 3.0303 ZEEX."
-//   } 
     _viewUSDTorBNB(this.value);
-    //console.log(this.value);
 });
-
-//_getBNBPrice();
-
 
 function isNumber(str) {
     return !isNaN(parseFloat(str))
 }
-
 
 function hideAllModals() {
     $('#modal-choice-wallet').modal('hide');
@@ -856,38 +518,19 @@ function hideAllModals() {
     $("#modalAlternative").modal('hide')
 }
 
-//console.log(getRefZ());
-
-
-
-
-
-
-
-// NEW VERSION
-
-
-
-
 
 async function getPartnerLink() {
     console.log("PARTNERLINK");
 
-
     $("#modal2").modal({backdrop: 'static', keyboard: false});
     user = Moralis.User.current();
-
-
     const signLink = {  
         contractAddress: smartContractAddr,  
         functionName: "signPartner",  
         abi: smartContractABI,  
     };
 
-    
-
     if(user) {
-        //Moralis.enableWeb3() ;
         const addr = user.attributes.ethAddress;
         console.log(addr);
         console.log("sign partner");
@@ -895,7 +538,7 @@ async function getPartnerLink() {
         let signOk = false;
         try {
                 const providerZ = localStorage.getItem("providerZ");
-                console.log(providerZ);
+                //console.log(providerZ);
 
                 if (providerZ == 'wc') {
                     web3 = await Moralis.enableWeb3({provider, chainId}); //wallet conect
@@ -903,11 +546,8 @@ async function getPartnerLink() {
                 else {
                     web3 = await Moralis.enableWeb3(); // metamask
                 }
-                
                 if(web3) {
-                    //signOk = await Moralis.executeFunction(signLink);
-
-                    //console.log('EXECUTAR FUNÇÃO CLAIM AIRDROP');
+                    signOk = await Moralis.executeFunction(signLink);
                 }
         } catch (error) {
             $("#modal2").modal('hide');
@@ -915,10 +555,7 @@ async function getPartnerLink() {
             logout();
         }
         
-        if (signOk || true) {
-
-
-            
+        if (signOk) {
             const getLink = {  
                 contractAddress: smartContractAddr,  
                 functionName: "getPartnerWithWallet",  
@@ -927,8 +564,6 @@ async function getPartnerLink() {
                     wallet: addr
                 },
             };
-
-
             try {
                 getLinkPartner = await Moralis.executeFunction(getLink);
             } catch (error) {
@@ -936,58 +571,29 @@ async function getPartnerLink() {
                 showModal("Error", "error: " + error.code + ". " + error.message)
                 logout();
             }
-
             if (getLinkPartner) {
                 hideAllModals();
                 clearForm();
-                // sendEmail(email, name, `${amountUSDT}`);
-
-                
-
                 console.log(JSON.stringify(getLinkPartner));
                 const usercode = getLinkPartner[0];
                 user.set("cod_partner_v1", usercode);
                 user.save();
-                // user.setEmail(email);
                 showModal("Success", `Congratulations, partner link register: https://www.artzeex.com/?refZ=${usercode}. If you have any questions, please contact contact@artzeex.com.` );
                 renderApp();
             }
-
-            
         }
         else {
             $("#modal2").modal('hide');
             showModal("Error", "Unexpected error. Reconnect your wallet and try again." )
             logout();
         }
-
     }
     else {
         $("#modal2").modal('hide');
         showModal('Error', 'connect your wallet first.');
         choiceWallet();
     }
-
-
-
 }
-
-
-
-function test() {
-
-
-
-    //JSON.stringify(getLinkPartner);
-}
-
-
-
-
-
-
-
-
 
 
 function showCustomModal(id) {
@@ -1001,21 +607,10 @@ function choiceWallet() {
     showCustomModal('#modal-choice-wallet');
 }
 
-
-
-//document.getElementById("btn-buyZeex").onclick = submitBuyZeex;
 document.getElementById("link-alternative").onclick = showModalAlternative;
 document.getElementById("btn-submit-alt").onclick = submitFormAlt;
-
-
-
 document.getElementById("btn1-conect-wallet").onclick = choiceWallet;
-
 document.getElementById("btn1-claim-airdrop").onclick = claimAirDrop;
 
-
-
-
 renderApp();
-// logout();
- console.log(getRefZ());
+//console.log(getRefZ());
