@@ -10,10 +10,9 @@
 </head>
 <body>
 
-	<div class="logo"><img alt="" height="40%" src="logo.png" /></div>
-
-
-
+	<div class="logo">
+		<img alt="" height="40%" src="logo.png" />
+	</div>
 
 
 	<div class="ique-content">
@@ -26,13 +25,13 @@
 		<div class="stepper-wrapper">
 			<div id="stepper-conect" data-content="Popover with data-trigger" class="stepper-item active">
 				<div class="step-counter">1</div>
-				<div class="step-name">Conect Wallet</div>
+				<div id="step1-name" class="step-name">Conect Wallet</div>
 			</div>
-			<div class="stepper-item">
+			<div id="stepper-airdrop" class="stepper-item">
 				<div class="step-counter">2</div>
 				<div class="step-name">Claim AirDrop</div>
 			</div>
-			<div class="stepper-item">
+			<div id="stepper-buy" class="stepper-item">
 				<div class="step-counter">3</div>
 				<div class="step-name">Buy ZEEX - Big Discount</div>
 			</div>
@@ -56,7 +55,7 @@
 		
 		<div class="ique-cards-wrapper">
 			<div class="card-deck">
-				<div class="card ique-show-flex">
+				<div id="card-step1" class="card ique-show-flex">
 					<img class="card-img-top" src="1-wallet.jpg" alt="Card image cap">
 					<div class="card-body">
 						<p class="card-text">Click here to connect your wallet</p>
@@ -65,22 +64,23 @@
 						<span id="btn1-conect-wallet" class="btn btn-light">Connect wallet</span>
 					</div>
 				</div>
-				<div class="card ique-hide">
+				<div id="card-step2" class="card ique-hide">
 					<img class="card-img-top" src="2-aidrop.jpg" alt="Card image cap">
 					<div class="card-body">
 						<p class="card-text">Click below in CLAIM AIRDROP button to get your airdrop now.</p>
 					</div>
 					<div class="card-footer">
-						<span class="btn btn-light">Claim Airdrop</span>
+						<span id="btn1-claim-airdrop" class="btn btn-light">Claim Airdrop</span>
 					</div>
 				</div>
-				<div class="card ique-hide">
+				<div id="card-step3" class="card ique-hide">
 					<img class="card-img-top" src="3-zeex.jpg" alt="Card image cap">
 					<div class="card-body">
+						
 						<p class="card-text">Would you like to participate on ZEEX presale? Inform your investment to buy now.</p>
 					</div>
 					<div class="card-footer">
-						<span class="btn btn-light">Buy ZEEX</span>
+						<a href="#msg-sale" class="lead links-presale"><span class="link-hand links-presale btn btn-light">Buy ZEEX</span></a>
 					</div>
 				</div>
 			</div>
@@ -98,7 +98,7 @@
 				<h1  class="display-4">Partner program </h1>
 				<p class="lead">ArtZeex offers a partner program, with the possibility of commissions - in ZEEX and in USDT / BNB - for affiliates who want to promote the project.</p>
 				<p class="lead">The benefits are enormous </p>
-				<a href="#partner-sign" class="lead link-hand">Get your partner link and receive automatic commissions</a>
+				<a href="#partner-sign" id="link-hand" class="lead link-hand">Get your partner link and receive automatic commissions</a>
 			</div>
 	   </div>
 
@@ -109,8 +109,8 @@
 				<p class="lead">40% commission on purchases made with your link - 35% in ZEEX and 5% in USDT/BNB currency - for limited time and stock.</p>
 				<p class="lead">Commissions are automatically credited at the time of each purchase transaction.</p>
 				<p class="lead">Also receive 100% airdrops from every person who requests an airdrop with your link.</p>
-				<p class="lead">Don't miss this opportunity and sign up for the partner program, linking your portfolio to receive commissions.</p>
-				<p class="lead">Fill in your name and email and link your wallet, using the button below.</p>
+				<p class="lead">Don't miss this opportunity and sign up for the partner program, linking your wallet to receive commissions.</p>
+				<p class="lead">Fill in your name and email and conect your wallet, using the button below.</p>
 				<form class="container">
 					<div class="form-group">
 						<label for="InputNamePartner">Name</label> 
@@ -121,9 +121,18 @@
 						<input aria-describedby="emailHelp" class="form-control" id="InputEmailPartner" name="InputEmailPartner" placeholder="Your email" type="email" /> <small id="emailHelp">We will never share your email with anyone.</small>
 					</div>
 					<div class="ique_btn">
-						<span class="btn-dark pink">Get Partner link</span>
+						<span id="btn-get-partner-link" class="btn-dark pink">Get Partner link</span>
 					</div>
 				</form>
+			</div>
+			<div id="partner-ok" class="ique-partner-awards-content">
+				<h1 class="display-4">Congratulations, you are a ZEEX partner</h1>
+				<p class="lead">40% commission on purchases made with your link - 35% in ZEEX and 5% in USDT/BNB currency - for limited time and stock.</p>
+				<p class="lead">Commissions are automatically credited at the time of each purchase transaction.</p>
+				<p class="lead">Also receive 100% airdrops from every person who requests an airdrop with your unique link:</p>
+				<h1 class="display-5">https://www.artzeex.com/?refZ=<span id="codpartner1"></span></p>
+				<h1 class="display-5">presale.artzeex.com/?refZ=<span id="codpartner2"></span></p>
+				<p class="lead">Address receive: <span id="addrreceive"></span></p>
 			</div>
    	    </div>
 
@@ -132,7 +141,7 @@
 		<div class="ique-whitepaper">
 			<div class="ique-whitepaper-content">
 				<h1 class="display-4">Download the project Whitepaper</h1>
-		     	<span class="btn-dark">Open the Whitepaper now</span>
+				<a class="links-presale" href="https://artzeex.com/wp-content/uploads/2021/10/Artzeex-Whitepaper-EN.pdf" target="_black"><span class="btn-dark">Open the Whitepaper now</span></a>
 			</div>
 		</div>
 
@@ -148,12 +157,6 @@
 					<p class="lead" id="link-alternative"><small id="emailHelp">Do you want to buy your ZEEX in another way? No problem, click here.</small></p>
 				</div>
 				<form class="container ique-white">
-					<div class="form-group">
-						<label for="InputName">Name</label> 
-						<input aria-describedby="name" class="form-control" id="InputName" name="InputName" placeholder="Your name" type="name" /></div>
-					<div class="form-group">
-						<label for="InputEmail1">Email address</label>
-						<input aria-describedby="emailHelp" class="form-control" id="InputEmail" name="InputEmail" placeholder="Your email" type="email" /> <small id="emailHelp">We will never share your email with anyone.</small></div>
 					
 						<div class="form-group">
 							<select id="seletc-USDTorBNB" class="custom-select" required>
@@ -168,6 +171,14 @@
 					<div id="div-input-BNB" class="form-group">
 						<label for="InputBNB">Amount of BNB to invest</label>
 						<input class="form-control" id="InputBNB" min="0.1" name="InputBNB" placeholder="Minimum: 0.1 BNB." type="number" /><small id="priceBNBHelp"></small>
+					</div>
+					<div class="form-group">
+						<label for="InputName">Name</label> 
+						<input aria-describedby="name" class="form-control" id="InputName" name="InputName" placeholder="Optional" type="name" />
+					</div>
+					<div class="form-group">
+						<label for="InputEmail1">Email address</label>
+						<input aria-describedby="emailHelp" class="form-control" id="InputEmail" name="InputEmail" placeholder="Optional" type="email" /> <small id="emailHelp">We will never share your email with anyone.</small>
 					</div>
 					<div class="ique_btn">
 						<span class="btn-dark" id="btn-buyZeex">Buy ZEEX </span>
@@ -218,7 +229,7 @@
 
 
 	<!-- Footer-->
-	<footer class="footer">
+	<!-- <footer class="footer">
 		<div id="content-footer">
 			<p class="ique_bold">Our reputation and your safety are top priorities for us.</p>
 			<p class="ique_bold">This interface and the smart contract that automates transactions with ZEEX are secure, open source and auditable by the entire community.</p>
@@ -227,12 +238,55 @@
 			   <a href="https://github.com/iquecode/ZEEXswapContractV2" target="_blank">GitHub</a>
 			</p>
 		</div>
-	</footer>
-	<!-- Copyright Section-->
-	<!-- <div class="copyright py-4 text-center text-white">
-		<div class="container"><small>Copyright © ique.dev 2021</small></div>
-	</div> -->
+		<div id="content-footer-down">			
+			<div>
+				<a href="https://www.artzeex.com/" Target="_Blank"><img src="https://artzeex.com/wp-content/uploads/2021/09/logo-rodape.png" /></a>
+			</div>
+			<div id="footer-contacts">
+				<a href="mailto:contact@artzeex.com" title="Send mail" Target="_Blank">Contact Us |</a>
+				<a href="https://www.instagram.com/artzeex/" Target="_Blank">Instagram |</a>
+				<a href="https://twitter.com/ArtzeexToken" Target="_Blank">Twitter |</a>
+				<a href="https://t.me/joinchat/uEsPRgVNn81kNjkx" Target="_Blank">Telegram</a>
+			</div>
+		</div>
+	</footer> -->
 
+
+	<!-- Footer-->
+	<footer class="footer">
+
+		<div id="div-disclaimer">
+			<p class="lead" id="disclaimer">The information on this website is not intended for distribution or use by any person in any country or jurisdiction where such distribution or use would be contrary to local law or regulation.
+			</p>
+			</div>
+		<div id="content-footer">
+			<div>
+				<p class="ique_bold">Our reputation and your safety are top priorities for us.</p>
+				<p class="ique_bold">This interface and the smart contract that automates transactions with ZEEX are secure, open source and auditable by the entire community.</p>
+				<p><a href="https://github.com/iquecode/FrontEndPreSaleZEEXv2" target="_blank">Front End Interface</a>  |
+				<a href="https://bscscan.com/address/0x5377ad07a500cbb80c83a59e1de7e281ddb0d881" target="_blank">Smart Contract - BSCscan</a> - 
+				<a href="https://github.com/iquecode/ZEEXswapContractV2" target="_blank">GitHub</a>
+				</p>
+			</div>
+			<div>
+				<div id="content-footer-down">			
+					<div>
+						<a href="https://www.artzeex.com/" Target="_Blank"><img src="https://artzeex.com/wp-content/uploads/2021/09/logo-rodape.png" /></a>
+					</div>
+					<div id="footer-contacts">
+						<a href="mailto:contact@artzeex.com" title="Send mail" Target="_Blank">Contact Us |</a>
+						<a href="https://www.instagram.com/artzeex/" Target="_Blank">Instagram |</a>
+						<a href="https://twitter.com/ArtzeexToken" Target="_Blank">Twitter |</a>
+						<a href="https://t.me/joinchat/uEsPRgVNn81kNjkx" Target="_Blank">Telegram</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+		
+	</footer>
+	
 
 
 	<div aria-hidden="true" aria-labelledby="exampleModalLongTitle" class="modal fade" id="modalAlternative" role="dialog" tabindex="-1">
@@ -332,6 +386,35 @@
 			</div>
 		</div>
 	</div>
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

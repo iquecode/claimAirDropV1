@@ -7,7 +7,7 @@ footer p {
     color: #455A64 !important; 
     font-size: small !important;
     margin: 0;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .lead {
@@ -25,7 +25,9 @@ footer {
     /* position: fixed;
     bottom:0;
     left:0; */
-    height: 120px;
+    /* height: 120px; */
+    padding-top: 15px;
+    padding-bottom: 15px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -33,14 +35,23 @@ footer {
     flex-direction: column;
 }
 
-#content-footer {
+/* #content-footer {
     height: 70%;
     width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+} */
+
+#content-footer {
+    height: 70%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
 
 body {
     background-color: #8f00b5;
@@ -145,7 +156,7 @@ body {
     color: red !important;
 }
 
-#div-input-BNB {
+#div-input-BNB, #div-input-BNB-card  {
     display: none;
 }
 

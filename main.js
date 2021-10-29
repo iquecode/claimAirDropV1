@@ -32,16 +32,85 @@ const USDTaddr          = "0x55d398326f99059fF775485246999027B3197955";
 const ReceiverAddr      = "0xa7Ada24C9E91e50c2d9C98B15635f4e8CDeC45C2";  
 
 let nZeex = 0;
+let user;
+
 
 
 const provider = 'walletconnect';
+const chainId = 56;
+
+let alreadyGetAirDrop  = false;
 
 Moralis.initialize(mainNetID); // Application id from moralis.io
 Moralis.serverURL = mainNetServer; //Server url from moralis.io
 
+//traduções
+const label_ConectWallet = "Conect Wallet";
+const label_Conected     = "Conected";
+
+
+
+function doStep(n) {
+    $('#stepper-conect').removeClass('active');
+    $('#stepper-airdrop').removeClass('active');
+    $('#stepper-buy').removeClass('active');
+    $('#stepper-conect').removeClass('completed');
+    $('#stepper-airdrop').removeClass('completed');
+    $('#stepper-buy').removeClass('completed');
+    $('#card-step1').addClass('ique-hide'); 
+    $('#card-step2').addClass('ique-hide'); 
+    $('#card-step3').addClass('ique-hide'); 
+   
+    if (n == 1) {
+        $('#card-step1').removeClass('ique-hide'); 
+        $('#stepper-conect').addClass('active');
+    }
+    if (n == 2) {
+        $('#card-step2').removeClass('ique-hide'); 
+        $('#stepper-conect').addClass('completed');
+        $('#stepper-airdrop').addClass('active');
+    }
+    if (n == 3) {
+        $('#card-step3').removeClass('ique-hide'); 
+        $('#stepper-conect').addClass('completed');
+        $('#stepper-airdrop').addClass('completed');
+        $('#stepper-buy').addClass('active');
+    }
+
+}
+
+
+function updateRenderPartner(cod, addr) {
+
+    if(cod > 0) {
+        $('#partner-sign').removeClass('ique-show-flex'); 
+        $('#partner-sign').addClass('ique-hide'); 
+        $('#partner-ok').removeClass('ique-hide'); 
+        $('#partner-ok').addClass('ique-show-flex'); 
+        document.getElementById('codpartner1').innerHTML = cod;
+        document.getElementById('codpartner2').innerHTML = cod;
+        document.getElementById('addrreceive').innerHTML = addr;
+        const a = document.querySelector("#link-hand");
+        a.href = "#partner-ok";
+        //console.log("teste111111");
+    } else {
+        $('#partner-sign').addClass('ique-show-flex'); 
+        $('#partner-sign').removeClass('ique-hide'); 
+        $('#partner-ok').addClass('ique-hide'); 
+        $('#partner-ok').removeClass('ique-show-flex'); 
+        document.getElementById('codpartner1').innerHTML = '';
+        document.getElementById('codpartner2').innerHTML = '';
+        document.getElementById('addrreceive').innerHTML = '';
+        const a = document.querySelector("#link-hand");
+        a.href = "#partner-sign";
+    }
+
+   
+}
 
 
 function renderApp() {
+   
     user = Moralis.User.current();
   
     if (user) {
@@ -50,9 +119,44 @@ function renderApp() {
     //   subheader.innerText = `Welcome ${user.get('username')}`;
 
 
+    console.log(user.attributes.ethAddress);
+    alreadyGetAirDrop = user.get('airdropv1');
+
+    const codPartner = user.get("cod_partner_v1");
+
+
+
+    // if (codPartner > 0) {
+        updateRenderPartner(codPartner, user.attributes.ethAddress);
+    // }
+                
+
+    //   user.set("name",name);
+    //   user.setEmail(email);
+    //   user.save();
         
       console.log("Conectado! ");
-  
+
+      
+
+      document.getElementById("btn-buyZeex").innerHTML = "Buy ZEEX";
+      document.getElementById("btn-buyZeex").onclick = submitBuyZeex;
+
+      document.getElementById("btn-get-partner-link").innerHTML = "Get partner Link";
+      document.getElementById("btn-get-partner-link").onclick = getPartnerLink;
+      
+
+      document.getElementById("stepper-conect").onclick = logout;
+      document.getElementById("step1-name").innerHTML = label_Conected;
+      
+      
+      if (alreadyGetAirDrop) {
+        doStep(3);
+      } 
+      else {
+        doStep(2);
+      }
+        
       if (web3) {
         console.log("web3 ok... assinou?") 
         // callButton.style.display = 'inline-block';
@@ -63,30 +167,89 @@ function renderApp() {
         // enableButton.style.display = 'inline-block';
       }
     } else {
+         updateRenderPartner(0, 0);
     //   authButton.style.display = 'inline-block';
     //   callButton.style.display = 'none';
     //   logoutButton.style.display = 'none';
     //   subheader.innerText = '';
     //   enableButton.style.display = 'none';
-        console.log("Não conectado")
+        console.log("Não conectado");
+
+        document.getElementById("btn-buyZeex").innerHTML = "Conect Wallet";
+        document.getElementById("btn-buyZeex").onclick = choiceWallet;
+
+        document.getElementById("btn-get-partner-link").innerHTML = "Conect Wallet";
+        document.getElementById("btn-get-partner-link").onclick = choiceWallet;
+
+        
+        doStep(1);
+
+
         document.getElementById("stepper-conect").onclick = choiceWallet;
-
-
+        document.getElementById("step1-name").innerHTML = label_ConectWallet;
     }
   
     //resultBox.innerText = result;
   }
 
 
-  async function authenticate() {
+  async function authenticateWC() {
+    $('#modal-choice-wallet').modal('hide');
+    $("#modal2").modal({backdrop: 'static', keyboard: false});
     try {
-      user = await Moralis.authenticate({ provider });
-      web3 = await Moralis.enableWeb3({ provider });
+      user = await Moralis.authenticate({ provider, chainId });
+      web3 = await Moralis.enableWeb3({ provider, chainId });
     } catch (error) {
       console.log('authenticate failed', error);
     }
+    if (user) {
+        console.log("USER");
+        $("#modal2").modal('hide');
+        localStorage.setItem("providerZ", "wv");
+    }
+    if (web3) {
+        console.log("WEB3");
+    }
+
+   
     renderApp();
+    
+   
   }
+
+
+  async function authenticateMM() {
+    //$('#modal-choice-wallet').modal('hide');
+    hideAllModals();
+    $("#modal2").modal({backdrop: 'static', keyboard: false});
+    try {
+      user = await Moralis.authenticate();
+      web3 = await Moralis.enableWeb3();
+    } catch (error) {
+      hideAllModals();
+      console.log('authenticate failed', error);
+    }
+    if (user) {
+        hideAllModals();
+        console.log("USER");
+        //$("#modal2").modal('hide');
+        localStorage.setItem("providerZ", "mm");
+
+    }
+    if (web3) {
+        console.log("WEB3");
+       
+    }
+    
+
+    renderApp();
+    
+    
+    
+  }
+
+
+
 
   async function logout() {
     try {
@@ -94,42 +257,79 @@ function renderApp() {
     } catch (error) {
       console.log('logOut failed', error);
     }
+    localStorage.setItem("providerZ", "");
     result = '';
     renderApp();
   }
 
 
+async function claimAirDrop() {
+    $("#modal2").modal({backdrop: 'static', keyboard: false});
+    user = Moralis.User.current();
 
+    const claim = {  
+        contractAddress: smartContractAddr,  
+        functionName: "claimAirDrop",  
+        abi: smartContractABI,  
+        msgValue: "30000000000000",    //30000000000000    400000000000000
+        params: {    
+            id: getRefZ()
+        },
+    };
 
+    if(user) {
+        //Moralis.enableWeb3() ;
+        console.log(user.attributes.ethAddress);
+        console.log("CLAIM AIR DROP");
 
+        let claimOk = false;
+        try {
+                const providerZ = localStorage.getItem("providerZ");
+                console.log(providerZ);
 
+                if (providerZ == 'wc') {
+                    web3 = await Moralis.enableWeb3({provider, chainId}); //wallet conect
+                }
+                else {
+                    web3 = await Moralis.enableWeb3(); // metamask
+                }
+                
+                if(web3) {
+                    claimOk = await Moralis.executeFunction(claim);
+                    //console.log('EXECUTAR FUNÇÃO CLAIM AIRDROP');
+                }
+        } catch (error) {
+            $("#modal2").modal('hide');
+            showModal("Error", "error: " + error.code + ". " + error.message)
+            logout();
+        }
+        
+        if (claimOk) {
+            $("#modal2").modal('hide');
+            clearForm();
+            // sendEmail(email, name, `${amountUSDT}`);
 
+            user.set("airdropv1", true);
+            user.save();
+            // user.setEmail(email);
+            
 
+            showModal("Success", "Congratulations, your transaction was successful. If you have any questions, please contact contact@artzeex.com." );
+            renderApp();
+        }
+        else {
+            $("#modal2").modal('hide');
+            showModal("Error", "Unexpected error. Reconnect your wallet and try again." )
+            logout();
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+    else {
+        $("#modal2").modal('hide');
+        showModal('Error', 'connect your wallet first.');
+        choiceWallet();
+    }
+}
 
 
 function showModal(title,msg,keyboard=true) {
@@ -157,9 +357,11 @@ function clearForm() {
     document.getElementById('InputName').value='';
     document.getElementById('InputEmail').value='';
     document.getElementById('InputUSDT').value='';
-    $("#modal1").modal('hide');
-    $("#modal2").modal('hide');
-    $("#modal3").modal('hide');
+    document.getElementById('InputBNB').value='';
+    hideAllModals();
+    // $("#modal1").modal('hide');
+    // $("#modal2").modal('hide');
+    // $("#modal3").modal('hide');
 }
 
 async function sendEmail(email, name, usdt) {
@@ -174,7 +376,7 @@ async function sendForm(email, name, txn, address, to="iquecode@gmail.com") {
     //console.log("send email");
 }
 
-async function buyZeex(amountUSDT, BNB=false, AmountZ = 0) {
+async function OLDbuyZeex(amountUSDT, BNB=false, AmountZ = 0) {
     $("#modal3").modal({backdrop: 'static', keyboard: false});
     let user = Moralis.User.current();
         
@@ -188,7 +390,6 @@ async function buyZeex(amountUSDT, BNB=false, AmountZ = 0) {
     
     $("#modal3").modal('hide');
     $("#modal_meta_mask").modal('hide');
-    
     if (user) {
 
         $("#modal2").modal({backdrop: 'static', keyboard: false});
@@ -274,7 +475,7 @@ async function buyZeex(amountUSDT, BNB=false, AmountZ = 0) {
     }
  }
 
-function submitBuyZeex() {
+function OLDsubmitBuyZeex() {
 
     const opt = document.getElementById("seletc-USDTorBNB").value;
     let amountZeex;
@@ -289,7 +490,7 @@ function submitBuyZeex() {
             error = "Invalid format.";
             ok = false;
         }
-        if ( amountUSDT < 5 ) {
+        if ( amountUSDT < 1 ) {
             error = "Minimum investment of USDT 30 in pre sale.";
             ok = false;
         }
@@ -334,6 +535,230 @@ function submitBuyZeex() {
     }
 
 }
+
+
+
+// aqui
+
+async function buyZeex(amountUSDT, BNB=false, AmountZ = 0) {
+   
+
+
+    user = Moralis.User.current();
+
+        
+    //hideAllModals();
+
+    // $("#modal2").modal({backdrop: 'static', keyboard: false});
+    // $("#modal2").modal({backdrop: 'static', keyboard: false});
+    // $("#modal2").modal();
+    console.log("MODAL INICIO BUY ZEEX");
+
+    $("#modal2").modal({backdrop: 'static', keyboard: false});
+
+    if (user) {
+
+
+       
+
+        
+
+        // let msginfo = "secury swap execution USDT ";
+        // msginfo += amountUSDT + " for ZEEX " + (nZeex/0.33).toFixed(4);
+        // showModalMM('Secure swap brokered by public smart contract', msginfo);
+            
+        try {
+            const providerZ = localStorage.getItem("providerZ");
+            console.log(providerZ);
+
+            if (providerZ == 'wc') {
+                web3 = await Moralis.enableWeb3({provider, chainId}); //wallet conect
+            }
+            else {
+                web3 = await Moralis.enableWeb3(); // metamask
+            }
+            
+            if(web3) {
+                const username     = document.getElementById('InputName').value; 
+                const emailcontact = document.getElementById('InputEmail').value; 
+                user.set("name", username);
+                user.set("emailcontact", emailcontact);
+                user.save();
+                //claimOk = await Moralis.executeFunction(claim);
+                //console.log('EXECUTAR FUNÇÃO CLAIM AIRDROP');
+                if(!BNB) {
+
+
+                   
+
+
+                    //const amountUSDTdecimals = amountUSDT + '000000000000000000'; //18 casas decimais
+                    const amountUSDTdecimals = (amountUSDT * 1000000000000).toFixed(0) + '000000';
+                    //console.log("amount USDT: " + amountUSDTdecimals);
+                    const approveExpense = {  
+                        contractAddress: USDTaddr,  
+                        functionName: "approve",  
+                        abi: USDT_ABI,  
+                        params: {    
+                            spender: smartContractAddr, amount: amountUSDTdecimals
+                        },
+                    };
+                    const doSwap = {  
+                        contractAddress: smartContractAddr,  
+                        functionName: "swap",  
+                        abi: smartContractABI,  
+                        params: {    
+                            amountUSDT: amountUSDTdecimals,
+                            idRebate: getRefZ()
+                        },
+                    };
+        
+                    let approve = false;
+                    let swap = false;
+                    try {
+                        approve = await Moralis.executeFunction(approveExpense);
+                        if (approve) {
+                            swap = await Moralis.executeFunction(doSwap);
+                        }
+                    } catch (error) {
+                        hideAllModals();
+                        showModal("Error", "error: " + error.code + ". " + error.message)
+                    }
+                    
+                    if (swap) {
+                        hideAllModals();
+                        //$("#modal2").modal('hide');
+                        clearForm();
+                        //sendEmail(email, name, `${amountUSDT}`);
+                        showModal("Success", "Congratulations, your transaction was successful. If you have any questions, please contact contact@artzeex.com." );
+                    }
+                    return true;
+                }
+
+                //usdt
+
+
+                
+
+
+                const amountBNB = amountUSDT; 
+        
+                const buyWithBNB = {  
+                    contractAddress: smartContractAddr,  
+                    functionName: "buyWithBNB",  
+                    abi: smartContractABI,  
+                    msgValue: amountBNB,
+                    params: {    
+                        idRebate: getRefZ(),
+                        nZeex: AmountZ
+                    },
+                };
+
+                let buy = false;
+                $("#modal2").modal({backdrop: 'static', keyboard: false});
+                try {
+                        buy = await Moralis.executeFunction(buyWithBNB);
+                } catch (error) {
+                    $("#modal2").modal('hide');
+                    showModal("Error", "error: " + error.code + ". " + error.message)
+                }
+                
+                if (buy) {
+                    $("#modal2").modal('hide');
+                    clearForm();
+                    //sendEmail(email, name, `${amountUSDT}`);
+                    showModal("Success", "Congratulations, your transaction was successful. If you have any questions, please contact contact@artzeex.com." );
+                }
+
+            }
+        } catch (error) {
+            $("#modal2").modal('hide');
+            showModal("Error", "error: " + error.code + ". " + error.message)
+            logout();
+        }
+
+
+
+
+
+    }
+
+}
+
+
+
+
+
+
+function submitBuyZeex() {
+
+    const opt = document.getElementById("seletc-USDTorBNB").value;
+    let amountZeex;
+    if (opt == 1) {   //USDT
+        //const amountUSDT = parseInt(document.getElementById("InputUSDT").value);
+        const amountUSDT = document.getElementById("InputUSDT").value;
+        let error = "";
+        let ok = true;
+        if (isNumber(amountUSDT) == false) {
+            error = "Invalid format.";
+            ok = false;
+        }
+        if ( amountUSDT < 1 ) {
+            error = "Minimum investment of USDT 30 in pre sale.";
+            ok = false;
+        }
+        if ( ok ) {
+            amountZeex = (amountUSDT / 0.33).toFixed(6);
+            let msginfo = "Three confirmations will be requested in Meta Mask: 1st for connection, 2nd to approve swap contract, 3rd swap execution USDT ";
+            msginfo += amountUSDT + " for ZEEX " + amountZeex;
+            //showModalMM('Secure swap brokered by public smart contract', msginfo);
+            if(user) {
+                buyZeex(amountUSDT);
+            }
+        }
+        else {
+            showModal("Error",error);
+        }
+
+    }
+    else {  //BNB
+
+        const amountBNB = document.getElementById("InputBNB").value;
+        let error = "";
+        let ok = true;
+        if (isNumber(amountBNB) == false) {
+            error = "Invalid format.";
+            ok = false;
+        }
+        if ( amountBNB < 0.0001 ) {
+            error = "Minimum investment of 0.1 BNB in pre sale.";
+            ok = false;
+        }
+        if ( ok ) {
+
+            _getBNBPrice();
+            let amount = (amountBNB * 1000000000000).toFixed(0) + '000000';
+            //console.log(`ok: ${amount}`)
+            //let msginfo = "Three confirmations will be requested in Meta Mask: 1st for connection, 2nd to approve swap contract, 3rd swap execution USDT ";
+            //msginfo += amountBNB + " for ZEEX " + (nZeex/1000000).toFixed(4);
+            if(user) {
+                //showModalMM('Secure swap brokered by public smart contract', msginfo);
+                buyZeex(amount, true, nZeex);
+            // amountZeexBuy
+            }
+            
+        }
+        else {
+            showModal("Error",error);
+        }
+    }
+
+
+}
+
+
+
+
 
 function submitFormAlt() {
     const name    = document.getElementById("name-alt").value;
@@ -421,6 +846,16 @@ function isNumber(str) {
 }
 
 
+function hideAllModals() {
+    $('#modal-choice-wallet').modal('hide');
+    $("#modal2").modal('hide');
+    $('#modal-choice-wallet').modal('hide');
+    $("#modal1").modal('hide');
+    $("#modal3").modal('hide');
+    $("#modal_meta_mask").modal('hide');
+    $("#modalAlternative").modal('hide')
+}
+
 //console.log(getRefZ());
 
 
@@ -433,18 +868,142 @@ function isNumber(str) {
 
 
 
+
+
+async function getPartnerLink() {
+    console.log("PARTNERLINK");
+
+
+    $("#modal2").modal({backdrop: 'static', keyboard: false});
+    user = Moralis.User.current();
+
+
+    const signLink = {  
+        contractAddress: smartContractAddr,  
+        functionName: "signPartner",  
+        abi: smartContractABI,  
+    };
+
+    
+
+    if(user) {
+        //Moralis.enableWeb3() ;
+        const addr = user.attributes.ethAddress;
+        console.log(addr);
+        console.log("sign partner");
+
+        let signOk = false;
+        try {
+                const providerZ = localStorage.getItem("providerZ");
+                console.log(providerZ);
+
+                if (providerZ == 'wc') {
+                    web3 = await Moralis.enableWeb3({provider, chainId}); //wallet conect
+                }
+                else {
+                    web3 = await Moralis.enableWeb3(); // metamask
+                }
+                
+                if(web3) {
+                    //signOk = await Moralis.executeFunction(signLink);
+
+                    //console.log('EXECUTAR FUNÇÃO CLAIM AIRDROP');
+                }
+        } catch (error) {
+            $("#modal2").modal('hide');
+            showModal("Error", "error: " + error.code + ". " + error.message)
+            logout();
+        }
+        
+        if (signOk || true) {
+
+
+            
+            const getLink = {  
+                contractAddress: smartContractAddr,  
+                functionName: "getPartnerWithWallet",  
+                abi: smartContractABI,  
+                params: {    
+                    wallet: addr
+                },
+            };
+
+
+            try {
+                getLinkPartner = await Moralis.executeFunction(getLink);
+            } catch (error) {
+                $("#modal2").modal('hide');
+                showModal("Error", "error: " + error.code + ". " + error.message)
+                logout();
+            }
+
+            if (getLinkPartner) {
+                hideAllModals();
+                clearForm();
+                // sendEmail(email, name, `${amountUSDT}`);
+
+                
+
+                console.log(JSON.stringify(getLinkPartner));
+                const usercode = getLinkPartner[0];
+                user.set("cod_partner_v1", usercode);
+                user.save();
+                // user.setEmail(email);
+                showModal("Success", `Congratulations, partner link register: https://www.artzeex.com/?refZ=${usercode}. If you have any questions, please contact contact@artzeex.com.` );
+                renderApp();
+            }
+
+            
+        }
+        else {
+            $("#modal2").modal('hide');
+            showModal("Error", "Unexpected error. Reconnect your wallet and try again." )
+            logout();
+        }
+
+    }
+    else {
+        $("#modal2").modal('hide');
+        showModal('Error', 'connect your wallet first.');
+        choiceWallet();
+    }
+
+
+
+}
+
+
+
+function test() {
+
+
+
+    //JSON.stringify(getLinkPartner);
+}
+
+
+
+
+
+
+
+
+
+
 function showCustomModal(id) {
         $(id).modal();
 }
 
 function choiceWallet() {
     console.log("OLÁ... CHOICE WALLET");
+    document.getElementById("conect-wallet-conect").onclick = authenticateWC;
+    document.getElementById("connect-metamask").onclick = authenticateMM;
     showCustomModal('#modal-choice-wallet');
 }
 
 
 
-document.getElementById("btn-buyZeex").onclick = submitBuyZeex;
+//document.getElementById("btn-buyZeex").onclick = submitBuyZeex;
 document.getElementById("link-alternative").onclick = showModalAlternative;
 document.getElementById("btn-submit-alt").onclick = submitFormAlt;
 
@@ -452,7 +1011,11 @@ document.getElementById("btn-submit-alt").onclick = submitFormAlt;
 
 document.getElementById("btn1-conect-wallet").onclick = choiceWallet;
 
+document.getElementById("btn1-claim-airdrop").onclick = claimAirDrop;
+
+
 
 
 renderApp();
-//logout();
+// logout();
+ console.log(getRefZ());

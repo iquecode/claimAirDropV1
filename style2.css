@@ -192,7 +192,7 @@
 }
 
 .ique-white {
-    color: whitesmoke;
+    color: whitesmoke !important;
 }
 
 /* STEPPER */
@@ -297,9 +297,69 @@
 }
 
 .ique-show-flex {
-    display: flex;
+    display: flex !important;
 }
 
 .ique-hide {
     display: none !important;
 }
+
+#content-footer-down {
+    padding: 20px;
+    display: flex;
+    justify-content:center;
+    flex-direction: column; 
+    align-items:center; 
+    width: 100%;
+}
+
+#div-disclaimer {
+    width: 90%;
+    display: flex;
+    justify-content: start;
+}
+
+#footer-contacts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#disclaimer {
+    font-size:2em;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.links-presale {
+    color: whitesmoke;
+    text-decoration: none;
+}
+.links-presale:hover {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+@media only screen and (max-width:800px) {
+    footer p {
+        text-align: center;
+    }
+
+    /* #content-footer {
+    height: 70%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+} */
+
+    #content-footer {
+        height: 70%;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+} 
